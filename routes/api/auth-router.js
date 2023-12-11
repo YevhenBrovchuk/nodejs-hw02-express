@@ -6,6 +6,7 @@ import {
   userSignupSchema,
   userSigninSchema,
   userSubscriptionSchema,
+  emailSchema,
 } from "../../models/User.js";
 const authRouter = express.Router();
 
@@ -14,6 +15,13 @@ authRouter.post(
   isEmptyBody,
   validateBody(userSignupSchema),
   authController.register
+);
+authRouter.get("/verify/:verificationToken", authController.verifyEmail);
+
+authRouter.post(
+  "/verify",
+  validateBody(emailSchema),
+  authController.resendVerifyEmail
 );
 
 authRouter.post(

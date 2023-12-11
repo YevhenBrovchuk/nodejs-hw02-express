@@ -64,6 +64,13 @@ export const userSubscriptionSchema = Joi.object({
   // .message({ "any.required": `missing field subscription` }),
 });
 
+export const emailSchema = Joi.object({
+  email: Joi.string()
+    .pattern(emailRegexp)
+    .required()
+    .messages({ "any.required": "missing required field email" }),
+});
+
 const User = model("user", userSchema);
 
 export default User;
