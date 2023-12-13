@@ -7,6 +7,7 @@ import fs from "fs/promises";
 import gravatar from "gravatar";
 import Jimp from "jimp";
 import path from "path";
+import { nanoid } from "nanoid";
 
 const { JWT_SECRET, BASE_URL } = process.env;
 const avatarsDir = path.resolve("public", "avatars");
