@@ -44,9 +44,10 @@ const register = async (req, res) => {
   });
 };
 
-const verify = async (req, res) => {
+const verifyEmail = async (req, res) => {
   const { verificationCode } = req.params;
   const user = await User.findOne({ verificationCode });
+
   if (!user) {
     throw HttpError(404, "User not found");
   }
@@ -162,11 +163,11 @@ const updateAvatar = async (req, res) => {
 
 export default {
   register: ctrlWrapper(register),
+  verifyEmail: ctrlWrapper(verifyEmail),
+  resendVerifyEmail: ctrlWrapper(resendVerifyEmail),
   login: ctrlWrapper(login),
   current: ctrlWrapper(current),
   logout: ctrlWrapper(logout),
   updateSubscription: ctrlWrapper(updateSubscription),
   updateAvatar: ctrlWrapper(updateAvatar),
-  verify: ctrlWrapper(verify),
-  resendVerifyEmail: ctrlWrapper(resendVerifyEmail),
 };
