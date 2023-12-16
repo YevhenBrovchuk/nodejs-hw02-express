@@ -54,7 +54,7 @@ const verifyEmail = async (req, res) => {
 
   await User.findByIdAndUpdate(user._id, {
     verify: true,
-    verificationCode: "",
+    verificationCode: " ",
   });
 
   res.json({
